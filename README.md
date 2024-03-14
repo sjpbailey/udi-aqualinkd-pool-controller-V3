@@ -6,5 +6,3 @@
 
 Default:
 api_url: [http://localhost:80]
-
-![Example:](https://github.com/sjpbailey/udi-nodejs-pool-controller-V3/blob/main/images/Screenshot%202024-03-04%20at%2011.02.50%20PM.png)
