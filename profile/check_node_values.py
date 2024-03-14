@@ -11,8 +11,7 @@ import xml.etree.ElementTree as ET
 issues = 0
 
 # Open the editors file and check for errors
-editor_tree = ET.parse(
-    '/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-nodejs-pool-controller-V3/profile/editor/editors.xml')
+editor_tree = ET.parse('/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-aqualinkd-pool-controller-V3/udi-aqualinkd-pool-controller-V3/profile/editor/editors.xml')
 root = editor_tree.getroot()
 editors = {}
 for item in root:
@@ -49,7 +48,7 @@ if issues == 0:
 
 # Read in the NLS file and build a dictionary.
 nls = {}
-with open('/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-nodejs-pool-controller-V3/profile/nls/en_us.txt') as fp:
+with open('/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-aqualinkd-pool-controller-V3/udi-aqualinkd-pool-controller-V3/profile/nls/en_us.txt') as fp:
     for line in fp:
         line = line.rstrip()
         if line != "" and line[0] != '#':
@@ -58,7 +57,7 @@ with open('/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-nodejs-pool-c
 
 # Now parse the node definitions and build the appropriate driver arrays
 node_tree = ET.parse(
-    '/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-nodejs-pool-controller-V3/profile/nodedef/nodedefs.xml')
+    '/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-aqualinkd-pool-controller-V3/udi-aqualinkd-pool-controller-V3/profile/nodedef/nodedefs.xml')
 root = node_tree.getroot()
 for item in root:
     # this is a node definition
@@ -79,7 +78,7 @@ for item in root:
             print("\t]")
 
 node_tree = ET.parse(
-    '/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-nodejs-pool-controller-V3/profile/nodedef/nodedefs.xml')
+    '/Users/stevenbailey/UDI Development PG3/Nodeservers/udi-aqualinkd-pool-controller-V3/udi-aqualinkd-pool-controller-V3/profile/nodedef/nodedefs.xml')
 root = node_tree.getroot()
 for item in root:
     # nodeType = item.attrib['nodeType']

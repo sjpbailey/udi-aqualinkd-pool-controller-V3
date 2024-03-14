@@ -77,7 +77,7 @@ class PoolController(udi_interface.Node):
             self.apiBaseUrl = self.api_url
             # Get all data from nodejs pool controller api
             allData = requests.get(
-                url='{}/state/all'.format(self.apiBaseUrl))
+                url='{}/api/status'.format(self.apiBaseUrl))
 
             if allData.status_code == 200:
                 self.setDriver('ST', 1)
@@ -87,8 +87,9 @@ class PoolController(udi_interface.Node):
             self.allDataJson = allData.json()
             # LOGGER.info(self.allDataJson)
 
-            LOGGER.info("Pool Running  {}".format(
-                self.allDataJson["temps"]["bodies"][0]["isOn"]))
+            LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
+            self.setDriver('GV0', self.allDataJson["air_temp"])
+            
             # LOGGER.info("Temperatures {}".format(self.allDataJson["temps"]))
             # LOGGER.info("Pumps {}".format(self.allDataJson["pumps"]))
             # LOGGER.info("Filters {}".format(self.allDataJson["filters"]))
@@ -97,7 +98,11 @@ class PoolController(udi_interface.Node):
             #    self.allDataJson["virtualCircuits"]))
             # LOGGER.info("Heaters {}".format(self.allDataJson["heaters"]))
             # LOGGER.info("Schedules {}".format(self.allDataJson["schedules"]))
-            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
+
+
+
+
+            '''self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
                               'Body Pool', allData, self.apiBaseUrl, self.api_url))
 
         for i in self.allDataJson["circuits"]:
@@ -179,7 +184,7 @@ class PoolController(udi_interface.Node):
             LOGGER.info(i['isOn'])
             LOGGER.info("Virtual Circuit Discovery Complete")
         else:
-            LOGGER.info("No Virtual Circuits Found")
+            LOGGER.info("No Virtual Circuits Found")'''
 
     def delete(self):
         LOGGER.info('Being deleted')
@@ -192,7 +197,7 @@ class PoolController(udi_interface.Node):
 
     def check_params(self):
         self.Notices.clear()
-        default_api_url = "http://localhost:4200"
+        default_api_url = "http://localhost:80"
 
         self.api_url = self.Parameters.api_url
         if self.api_url is None:
@@ -212,4 +217,5 @@ class PoolController(udi_interface.Node):
     }
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 25, 'name': "Online"},
+        {'driver': 'GV0', 'value': 0, 'uom': 17, 'name': "Air Temp"},
     ]
