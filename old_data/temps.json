@@ -1,0 +1,54 @@
+{
+    "air": 67.8,
+    "bodies": [
+        {
+            "circuit": 6,
+            "heatMode": {
+                "desc": "Heater",
+                "name": "heater",
+                "val": 2
+            },
+            "heatStatus": {
+                "desc": "Heater",
+                "name": "heater",
+                "val": 1
+            },
+            "heaterCooldownDelay": false,
+            "heaterOptions": {
+                "gas": 1,
+                "heatpump": 0,
+                "hybrid": 0,
+                "mastertemp": 0,
+                "maxetherm": 0,
+                "solar": 0,
+                "total": 1,
+                "ultratemp": 0
+            },
+            "id": 1,
+            "isCovered": false,
+            "isOn": true,
+            "name": "Pool",
+            "setPoint": 78,
+            "showInDashboard": true,
+            "startDelay": false,
+            "stopDelay": false,
+            "temp": 69.89,
+            "type": {
+                "desc": "Pool",
+                "name": "pool",
+                "val": 0
+            }
+        }
+    ],
+    "equipmentType": "temps",
+    "units": {
+        "desc": "Fahrenheit",
+        "name": "F",
+        "val": 0
+    },
+    "waterSensor1": 68.08,
+    "waterSensor2": 0
+}
+
+
+
