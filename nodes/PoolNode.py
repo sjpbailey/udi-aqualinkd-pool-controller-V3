@@ -117,6 +117,14 @@ class PoolNode(udi_interface.Node):
             self.setDriver('GV14', 1)
         if pisOn == 'off':
             self.setDriver('GV14', 0)
+            
+        LOGGER.info("AUX-1  {}".format(
+            self.allDataJson["leds"]["Aux_1"]))
+        pisOn = self.allDataJson["leds"]["Aux_1"]
+        if pisOn == 'on':
+            self.setDriver('GV15', 1)
+        if pisOn == 'off':
+            self.setDriver('GV15', 0)
         
         
         
@@ -187,6 +195,7 @@ class PoolNode(udi_interface.Node):
         {'driver': 'GV12', 'value': None, 'uom': 25, 'name': "Solar Heat"},
         {'driver': 'GV13', 'value': None, 'uom': 25, 'name': "SPA Heat"},
         {'driver': 'GV14', 'value': None, 'uom': 25, 'name': "SPA Mode"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-1"},
         
         
         

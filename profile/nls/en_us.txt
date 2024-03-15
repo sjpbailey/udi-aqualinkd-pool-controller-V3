@@ -33,6 +33,8 @@ ST-bodypool-GV12-NAME = Solar Heat
 ST-bodypool-GV13-NAME = SPA Heat
 ST-bodypool-GV14-NAME = SPA Mode
 
+ST-bodypool-GV15-NAME = AUX-1 Status
+
 
 ST-bodypool-ST-NAME = Node Status
 CMD-bodypool-QUERY-NAME = Query
