@@ -41,6 +41,9 @@ ST-bodypool-GV21-NAME = AUX-7 Status
 
 ST-bodypool-ST-NAME = Node Status
 CMD-bodypool-QUERY-NAME = Query
+CMD-bodypool-DON-NAME = PUMP ON
+CMD-bodypool-DOF-NAME = PUMP OFF
+
 CMD-bodypool-SET_TEMP-NAME = Heat Setpoint
 #CMD-bodypool-SET_SPEED-NAME = Pump RPM
 
