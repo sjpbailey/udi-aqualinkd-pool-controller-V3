@@ -209,5 +209,5 @@ class PoolController(udi_interface.Node):
     }
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 25, 'name': "Online"},
-        {'driver': 'GV0', 'value': 0, 'uom': 17, 'name': "Air Temp"},
+        #{'driver': 'GV0', 'value': 0, 'uom': 17, 'name': "Air Temp"},
     ]

@@ -3,15 +3,15 @@
 ND-controller-NAME = AqualinkD
 ND-controller-ICON = Irrigation
 ST-ctl-ST-NAME = NodeServer Online
-ST-ctl-GV0-NAME = Air Temp
+#ST-ctl-GV0-NAME = Air Temp
 
 CMD-ctl-QUERY-NAME = Query
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-TMP-SET_TEMP-NAME = Setpoint
 
 
-# Pool Body
-ND-poolnode-NAME = Body Pool
+# Pool Statuses
+ND-poolnode-NAME = Pool Status
 ND-poolnode-ICON = Irrigation	
 ST-bodypool-GV0-NAME = Pool Running
 ST-bodypool-GV1-NAME = Air Temperature
