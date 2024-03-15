@@ -47,7 +47,7 @@ CMD-bodypool-DOF-NAME = PUMP OFF
 CMD-bodypool-SET_TEMP-NAME = Heat Setpoint
 #CMD-bodypool-SET_SPEED-NAME = Pump RPM
 
-# Circuit Nodes
+# AUX Circuit Nodes
 ND-switchnodeid-NAME = AUX Switch
 ND-switchnodeid-ICON = Irrigation
 ST-switch0-ST-NAME = Node Status
