@@ -207,8 +207,22 @@ print("State: {}".format(data["devices"][0]["state"]))
 
 
 for i in data["devices"]:
-    #print(i)
     try:
+        if i["type_ext"] == "switch_program" or "switch_timer":
+            print("Switch_EXT")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Status int: {}".format(i["int_status"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Status: {}".format(i["status"])))
+            print(print("Type External: {}".format(i["type_ext"])))
+            print()
+            
+    except KeyError:
+        print(f"Alert, Item not found! ")
+            
+    #print(i)
+""" try:
         '''if i["type"] == "temperature":
             print("Temperature")
             print(print("ID: {}".format(i["id"])))
@@ -269,5 +283,5 @@ for i in data["devices"]:
             
             
     except KeyError:
-        print(f"Alert, Item not found! ")
+        print(f"Alert, Item not found! ")"""
     

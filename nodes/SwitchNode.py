@@ -34,17 +34,16 @@ class SwitchNode(udi_interface.Node):
     def start(self):
         LOGGER.info(self.address)
         self.http = urllib3.PoolManager()
+        ##### GET Devices ####
         self.allData = requests.get(
-            url='{}/state/all'.format(self.apiBaseUrl))
+            url='{}/api/devices'.format(self.apiBaseUrl))
 
         if self.allData.status_code == 200:
             self.setDriver('ST', 1)
         else:
             self.setDriver('ST', 0)
 
-        self.allDataJson = self.allData.json()
-        # LOGGER.info("Circuit On {}".format(
-        #    self.allDataJson["circuits"][0]['isOn']))
+        self.allDevicesJson = self.allData.json()
 
     def poll(self, polltype):
         if 'longPoll' in polltype:
@@ -54,26 +53,23 @@ class SwitchNode(udi_interface.Node):
             self.reportDrivers()
 
     def cmd_on(self, command):
-
         json_data = {
-            'id': self.id1,
-            'isOn': 1,
+            'value': '1',
         }
 
         response = requests.put(
-            self.api_url + '/state/circuit/setState/',  json=json_data)
+            'http://localhost/api/' + self.id1 + '/set', data=json_data)
 
         self.setDriver('GV1', 1)
 
     def cmd_off(self, command):
 
         json_data = {
-            'id': self.id1,
-            'isOn': 0,
+            'value': '0',
         }
 
         response = requests.put(
-            self.api_url + '/state/circuit/setState/',  json=json_data)
+            'http://localhost/api/' + self.id1 + '/set', data=json_data)
 
         self.setDriver('GV1', 0)
 

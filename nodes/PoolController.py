@@ -92,12 +92,37 @@ class PoolController(udi_interface.Node):
             #LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
             #self.setDriver('GV0', self.allDataJson["air_temp"])
 
-        ########## Add Devices Below
+        ############  Grab data from a new call to devices to get names
 
-            '''self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
-                              'Body Pool', allData, self.apiBaseUrl, self.api_url))
+        ##### GET Devices ####
+        self.allData = requests.get(
+            url='{}/api/devices'.format(self.apiBaseUrl))
+        
+        self.allDevicesJson = self.allData.json()
 
-        for i in self.allDataJson["circuits"]:
+        for i in self.allDevicesJson["devices"]:
+            try:
+                if i["type_ext"] == "switch_program" or "switch_timer":
+                    LOGGER.info("Switch_EXT")
+                    LOGGER.info(print("ID: {}".format(i["id"])))
+                    id = i["id"]
+                    LOGGER.info(print("Status int: {}".format(i["int_status"])))
+                    LOGGER.info(print("Name: {}".format(i["name"])))
+                    name = i["name"]
+                    LOGGER.info(print("State: {}".format(i["state"])))
+                    LOGGER.info(print("Status: {}".format(i["status"])))
+                    LOGGER.info(print("Type External: {}".format(i["type_ext"])))
+                    address = 'zone_{}'.format(id)
+                    LOGGER.info()
+                    self.poly.addNode(SwitchNode(
+                    self.poly, self.address, address, name, self.apiBaseUrl, self.api_url))
+                    # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
+                    LOGGER.info("Auxillary Installation Complete")
+            
+            except KeyError:
+                LOGGER.info(f"Item not found! ")
+        
+        '''for i in self.allDataJson["circuits"]:
             name = i["name"]
             id = i["id"]
             # isOn = i["isOn"]
