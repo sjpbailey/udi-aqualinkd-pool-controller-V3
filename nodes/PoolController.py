@@ -89,8 +89,8 @@ class PoolController(udi_interface.Node):
             
             self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status', allData, self.apiBaseUrl, self.api_url))
             
-            LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
-            self.setDriver('GV0', self.allDataJson["air_temp"])
+            #LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
+            #self.setDriver('GV0', self.allDataJson["air_temp"])
 
         ########## Add Devices Below
 
