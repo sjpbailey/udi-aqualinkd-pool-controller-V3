@@ -214,7 +214,7 @@ for i in data["devices"]:
             print(print("Name: {}".format(i["name"])))
             print(print("State: {}".format(i["state"])))
             print(print("Value: {}".format(i["value"])))
-            print()
+            print()'''
         
         
         if i["type_ext"] == "switch":
@@ -225,7 +225,7 @@ for i in data["devices"]:
             print(print("State: {}".format(i["state"])))
             print(print("Status: {}".format(i["status"])))
             print(print("Type External: {}".format(i["type_ext"])))
-            print()'''
+            print()
         
         
         '''if i["type"] == "setpoint_thermo" or "setpoint_freeze" or "setpoint_swg":
