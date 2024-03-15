@@ -49,6 +49,15 @@ data = {
 
 
 print()
+print("SWG: {}".format(data["leds"]["SWG"]))
+print()
+print("SWG Boost: {}".format(data["leds"]["SWG/Boost"]))
+print()
+print("SWG Present: {}".format(data["swg_percent"]))
+print()
+print("SWG PPM: {}".format(data["swg_ppm"]))
+
+"""print()
 print("Pump GPM {}".format(data["Pump_1"]["GPM"]))
 print()
 print("Pump RPM {}".format(data["Pump_1"]["RPM"]))
@@ -75,10 +84,6 @@ print()
 print("Freeze Protection: {}".format(data["leds"]["Freeze_Protect"]))
 print()
 print("Pool Heater: {}".format(data["leds"]["Pool_Heater"]))
-print()
-print("SWG: {}".format(data["leds"]["SWG"]))
-print()
-print("SWG Boost: {}".format(data["leds"]["SWG/Boost"]))
 
 print()
 print("Solar Heat: {}".format(data["leds"]["Solar_Heater"]))
@@ -101,7 +106,7 @@ print("Auxillary 5: {}".format(data["leds"]["Aux_5"]))
 print()
 print("Auxillary 6: {}".format(data["leds"]["Aux_6"]))
 print()
-print("Auxillary 7: {}".format(data["leds"]["Aux_7"]))
+print("Auxillary 7: {}".format(data["leds"]["Aux_7"]))"""
 
 
 # for i in data:
