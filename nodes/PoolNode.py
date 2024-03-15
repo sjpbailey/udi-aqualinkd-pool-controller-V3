@@ -117,6 +117,8 @@ class PoolNode(udi_interface.Node):
             self.setDriver('GV14', 1)
         if pisOn == 'off':
             self.setDriver('GV14', 0)
+
+############  Grab data from a new call to devices to get names
             
         LOGGER.info("AUX-1  {}".format(
             self.allDataJson["leds"]["Aux_1"]))
