@@ -21,4 +21,45 @@
     </nodeDef>
 
 
+    <!-- bodydeid -->
+    <nodeDef id="poolnode" nls="bodypool">
+        <editors />
+        <sts>
+            <st id="GV0" editor="RUNIN" />
+            <st id="GV1" editor="TEMP" />
+            <st id="GV3" editor="TEMP" />
+            <st id="GV30" editor="STATUS" />
+            <st id="GV4" editor="RUNIN" />
+            <st id="GV5" editor="WATT" />
+            <st id="GV6" editor="RPM" />
+            <st id="GV7" editor="GPM" />
+            <st id="GV8" editor="PER" />
+            <st id="GV9" editor="PPM" />
+            <st id="GV2" editor="TEMP" />
+            <st id="GV10" editor="TEMP" />
+            <st id="GV11" editor="TEMP" />
+            <st id="GV12" editor="RUNIN" />
+            <st id="GV13" editor="RUNIN" />
+            <st id="GV14" editor="RUNIN" />
+
+            <st id="ST" editor="ONLINE" />
+
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+                <cmd id="QUERY" />
+                <!--cmd id="SET_TEMP">
+                    <p id="" editor="CTL_TEMP" init="CLISPH" />
+                </cmd-->
+                <!--cmd id="SET_SPEED">
+                    <p id="" editor="CTL_RPM" init="SPDSPH" />
+                </cmd-->
+            </accepts>
+        </cmds>
+    </nodeDef>
+
+
 </nodeDefs>

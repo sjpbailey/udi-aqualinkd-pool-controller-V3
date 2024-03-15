@@ -86,21 +86,13 @@ class PoolController(udi_interface.Node):
 
             self.allDataJson = allData.json()
             # LOGGER.info(self.allDataJson)
-
+            
+            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status', allData, self.apiBaseUrl, self.api_url))
+            
             LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
             self.setDriver('GV0', self.allDataJson["air_temp"])
-            
-            # LOGGER.info("Temperatures {}".format(self.allDataJson["temps"]))
-            # LOGGER.info("Pumps {}".format(self.allDataJson["pumps"]))
-            # LOGGER.info("Filters {}".format(self.allDataJson["filters"]))
-            # LOGGER.info("Valves {}".format(self.allDataJson["valves"]))
-            # LOGGER.info("Virtual Circuits {}".format(
-            #    self.allDataJson["virtualCircuits"]))
-            # LOGGER.info("Heaters {}".format(self.allDataJson["heaters"]))
-            # LOGGER.info("Schedules {}".format(self.allDataJson["schedules"]))
 
-
-
+        ########## Add Devices Below
 
             '''self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
                               'Body Pool', allData, self.apiBaseUrl, self.api_url))

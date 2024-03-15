@@ -20,6 +20,14 @@
     <range uom="17" min="-100000" max="100000" step="1" prec="1"/>
   </editor>
 
+  <editor id="PER">
+    <range uom="51" min="-100000" max="100000" step="1" prec="1"/>
+  </editor>
+
+  <editor id="PPM">
+    <range uom="54" min="-100000" max="100000" step="1" prec="1"/>
+  </editor>
+
   <editor id="RPM">
     <range uom="89" min="0" max="4000" step="1" prec="1"/>
   </editor>

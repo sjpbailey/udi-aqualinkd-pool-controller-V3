@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "aiohttp",
+    "Aqualink",
     "bodynodeid",
     "bodypool",
     "checkconnect",
@@ -15,6 +16,7 @@
     "HSVS",
     "ison",
     "ISVS",
+    "leds",
     "Polisy",
     "poolcontrolpy",
     "poolheat",
@@ -31,6 +33,7 @@
     "SERVERDATA",
     "spaheat",
     "SPDSPH",
+    "spvalue",
     "switchnodeid",
     "triggerd"
   ]

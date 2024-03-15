@@ -194,3 +194,67 @@ data = {
     "time": "5:27 PM",
     "type": "devices"
 }
+print()
+print("Pump Name: {}".format(data["devices"][0]["name"]))
+print("Pump ID: {}".format(data["devices"][0]["id"]))
+print("Pump GPM: {}".format(data["devices"][0]["Pump_GPM"]))
+print("Pump RPM: {}".format(data["devices"][0]["Pump_RPM"]))
+print("Pump Watts: {}".format(data["devices"][0]["Pump_Watts"]))
+print("Pump Type: {}".format(data["devices"][0]["Pump_Type"]))
+print("Status int: {}".format(data["devices"][0]["int_status"]))
+print("Status: {}".format(data["devices"][0]["status"]))
+print("State: {}".format(data["devices"][0]["state"]))
+
+
+for i in data["devices"]:
+    try:
+        '''if i["type"] == "temperature":
+            print("Temperature")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Value: {}".format(i["value"])))
+            print()
+        
+        
+        if i["type_ext"] == "switch":
+            print("Switch")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Status int: {}".format(i["int_status"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Status: {}".format(i["status"])))
+            print(print("Type External: {}".format(i["type_ext"])))
+            print()'''
+        
+        
+        '''if i["type"] == "setpoint_thermo" or "setpoint_freeze" or "setpoint_swg":
+            print("Setpoint")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Status int: {}".format(i["int_status"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("Setpoint: Value: {}".format(i["spvalue"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Status: {}".format(i["status"])))
+            print(print("Value: {}".format(i["value"])))
+            print()'''
+            
+        '''if i["type"] == "value":
+            print("Value")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Value: {}".format(i["value"])))'''
+            
+            
+        if i["type_ext"] == "switch_vsp":
+            print("Value")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            #print(print("Value: {}".format(i["value"])))
+            
+            
+    except KeyError:
+        print(f"Alert, Item not found! ")
+    

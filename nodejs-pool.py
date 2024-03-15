@@ -12,7 +12,7 @@ LOG_HANDLER = udi_interface.LOG_HANDLER
 """ Grab My Controller Node (optional) """
 if __name__ == "__main__":
     try:
-        LOGGER.debug("Staring Jaguar Interface")
+        LOGGER.debug("Staring AqualinkD Interface")
         polyglot = udi_interface.Interface(
             [PoolController, SwitchNode, PoolNode])
         polyglot.start()
