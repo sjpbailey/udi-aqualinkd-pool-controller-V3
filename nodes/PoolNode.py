@@ -80,12 +80,12 @@ class PoolNode(udi_interface.Node):
         self.setDriver('GV7', self.allStatusJson["Pump_1"]["GPM"])
 
         LOGGER.info("Salt Water Gen  {}".format(
-            self.allStatusJson["leds"]["SWG"]))
-        self.setDriver('GV8', self.allStatusJson["leds"]["SWG"])
+            self.allStatusJson["swg_percent"]))
+        self.setDriver('GV8', self.allStatusJson["swg_percent"])
 
         LOGGER.info("Salt Water Boost  {}".format(
-            self.allStatusJson["leds"]["SWG/Boost"]))
-        self.setDriver('GV9', self.allStatusJson["leds"]["SWG/Boost"])
+            self.allStatusJson["swg_ppm"]))
+        self.setDriver('GV9', self.allStatusJson["swg_ppm"])
 
         LOGGER.info("Pool Heat Setpoint  {}".format(
             self.allStatusJson["pool_htr_set_pnt"]))
