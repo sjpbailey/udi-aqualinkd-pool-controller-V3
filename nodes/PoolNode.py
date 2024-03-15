@@ -125,14 +125,55 @@ class PoolNode(udi_interface.Node):
             self.setDriver('GV15', 1)
         if pisOn == 'off':
             self.setDriver('GV15', 0)
-        
-        
-        
-        
-        
-        
-        
-        
+            
+        LOGGER.info("AUX-2  {}".format(
+            self.allDataJson["leds"]["Aux_2"]))
+        pisOn = self.allDataJson["leds"]["Aux_2"]
+        if pisOn == 'on':
+            self.setDriver('GV16', 1)
+        if pisOn == 'off':
+            self.setDriver('GV16', 0)
+            
+        LOGGER.info("AUX-3  {}".format(
+            self.allDataJson["leds"]["Aux_3"]))
+        pisOn = self.allDataJson["leds"]["Aux_3"]
+        if pisOn == 'on':
+            self.setDriver('GV17', 1)
+        if pisOn == 'off':
+            self.setDriver('GV17', 0)
+            
+        LOGGER.info("AUX-4  {}".format(
+            self.allDataJson["leds"]["Aux_4"]))
+        pisOn = self.allDataJson["leds"]["Aux_4"]
+        if pisOn == 'on':
+            self.setDriver('GV18', 1)
+        if pisOn == 'off':
+            self.setDriver('GV18', 0)
+            
+        LOGGER.info("AUX-5  {}".format(
+            self.allDataJson["leds"]["Aux_5"]))
+        pisOn = self.allDataJson["leds"]["Aux_5"]
+        if pisOn == 'on':
+            self.setDriver('GV19', 1)
+        if pisOn == 'off':
+            self.setDriver('GV19', 0)
+            
+        LOGGER.info("AUX-6  {}".format(
+            self.allDataJson["leds"]["Aux_6"]))
+        pisOn = self.allDataJson["leds"]["Aux_6"]
+        if pisOn == 'on':
+            self.setDriver('GV20', 1)
+        if pisOn == 'off':
+            self.setDriver('GV20', 0)
+            
+        LOGGER.info("AUX-7  {}".format(
+            self.allDataJson["leds"]["Aux_7"]))
+        pisOn = self.allDataJson["leds"]["Aux_7"]
+        if pisOn == 'on':
+            self.setDriver('GV21', 1)
+        if pisOn == 'off':
+            self.setDriver('GV21', 0)
+
         self.http = urllib3.PoolManager()
 
     def poll(self, polltype):
@@ -146,16 +187,14 @@ class PoolNode(udi_interface.Node):
             LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
 
     def cmd_on(self, command):
-        json_data = {"id": 6, "state": True}  # True-Start False-Stop
+        json_data = {'value': '1',}
 
-        response = requests.put(
-            self.api_url + '/state/circuit/setState', json=json_data)
+        response = requests.put(self.api_url + '/api/Filter_Pump/set', data=json_data)
 
     def cmd_off(self, command):
-        json_data = {"id": 6, "state": False}  # True-Start False-Stop
+        json_data = {'value': '0',}
 
-        response = requests.put(
-            self.api_url + '/state/circuit/setState', json=json_data)
+        response = requests.put(self.api_url + '/api/Filter_Pump/set', data=json_data)
 
     def query(self, command=None):
         self.reportDrivers()
