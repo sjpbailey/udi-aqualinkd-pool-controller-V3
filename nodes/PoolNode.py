@@ -36,12 +36,6 @@ class PoolNode(udi_interface.Node):
 
         self.allStatusJson = self.allData.json()
         # LOGGER.info(self.allStatusJson)
-        
-        
-
-
-
-
 
         LOGGER.info("Pool Running  {}".format(
             self.allStatusJson["leds"]["Filter_Pump"]))
