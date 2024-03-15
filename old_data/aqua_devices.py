@@ -207,6 +207,7 @@ print("State: {}".format(data["devices"][0]["state"]))
 
 
 for i in data["devices"]:
+    #print(i)
     try:
         '''if i["type"] == "temperature":
             print("Temperature")
@@ -215,10 +216,20 @@ for i in data["devices"]:
             print(print("State: {}".format(i["state"])))
             print(print("Value: {}".format(i["value"])))
             print()'''
+            
+        '''if i["type"] == "setpoint_thermo":
+            print("Switch Heaters")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Status int: {}".format(i["int_status"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Status: {}".format(i["status"])))
+            print(print("Type External: {}".format(i["type_ext"])))
+            print()'''
         
         
-        if i["type_ext"] == "switch":
-            print("Switch")
+        if i["type_ext"] == "switch_program" or "switch_timer":
+            print("Switch_EXT")
             print(print("ID: {}".format(i["id"])))
             print(print("Status int: {}".format(i["int_status"])))
             print(print("Name: {}".format(i["name"])))
@@ -226,6 +237,8 @@ for i in data["devices"]:
             print(print("Status: {}".format(i["status"])))
             print(print("Type External: {}".format(i["type_ext"])))
             print()
+        
+        
         
         
         '''if i["type"] == "setpoint_thermo" or "setpoint_freeze" or "setpoint_swg":
@@ -244,7 +257,7 @@ for i in data["devices"]:
             print(print("ID: {}".format(i["id"])))
             print(print("Name: {}".format(i["name"])))
             print(print("State: {}".format(i["state"])))
-            print(print("Value: {}".format(i["value"])))'''
+            print(print("Value: {}".format(i["value"])))
             
             
         if i["type_ext"] == "switch_vsp":
@@ -252,7 +265,7 @@ for i in data["devices"]:
             print(print("ID: {}".format(i["id"])))
             print(print("Name: {}".format(i["name"])))
             print(print("State: {}".format(i["state"])))
-            #print(print("Value: {}".format(i["value"])))
+            #print(print("Value: {}".format(i["value"])))'''
             
             
     except KeyError:
