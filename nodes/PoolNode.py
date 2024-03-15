@@ -25,6 +25,7 @@ class PoolNode(udi_interface.Node):
         self.api_url = api_url
 
     def start(self):
+        ##### GET Status ####
         self.allData = requests.get(
             url='{}/api/status'.format(self.apiBaseUrl))
 
@@ -33,144 +34,178 @@ class PoolNode(udi_interface.Node):
         else:
             self.setDriver('ST', 0)
 
-        self.allDataJson = self.allData.json()
-        # LOGGER.info(self.allDataJson)
+        self.allStatusJson = self.allData.json()
+        # LOGGER.info(self.allStatusJson)
+        
+        
+
+
+
+
 
         LOGGER.info("Pool Running  {}".format(
-            self.allDataJson["leds"]["Filter_Pump"]))
+            self.allStatusJson["leds"]["Filter_Pump"]))
 
-        isON = self.allDataJson["leds"]["Filter_Pump"]
+        isON = self.allStatusJson["leds"]["Filter_Pump"]
         LOGGER.info(isON)
         if isON == 'on':
             self.setDriver('GV0', 1)
         if isON == 'off':
             self.setDriver('GV0', 0)
 
-        LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
-        self.setDriver('GV1', self.allDataJson["air_temp"])
+        LOGGER.info("Air Temp  {}".format(self.allStatusJson["air_temp"]))
+        self.setDriver('GV1', self.allStatusJson["air_temp"])
 
         LOGGER.info("Freeze Setpoint  {}".format(
-            self.allDataJson["frz_protect_set_pnt"]))
+            self.allStatusJson["frz_protect_set_pnt"]))
         self.setDriver(
-            'GV2', self.allDataJson["frz_protect_set_pnt"])
+            'GV2', self.allStatusJson["frz_protect_set_pnt"])
 
         LOGGER.info("Pool Temp  {}".format(
-            self.allDataJson["pool_temp"]))
-        self.setDriver('GV3', self.allDataJson["pool_temp"])
+            self.allStatusJson["pool_temp"]))
+        self.setDriver('GV3', self.allStatusJson["pool_temp"])
 
         LOGGER.info("Pump Status  {}".format(
-            self.allDataJson["leds"]["Filter_Pump"]))
-        pisOn = self.allDataJson["leds"]["Filter_Pump"]
+            self.allStatusJson["leds"]["Filter_Pump"]))
+        pisOn = self.allStatusJson["leds"]["Filter_Pump"]
         if pisOn == 'on':
             self.setDriver('GV4', 1)
         if pisOn == 'off':
             self.setDriver('GV4', 0)
 
         LOGGER.info("Pump Watts  {}".format(
-            self.allDataJson["Pump_1"]["Watts"]))
-        self.setDriver('GV5', self.allDataJson["Pump_1"]["Watts"])
+            self.allStatusJson["Pump_1"]["Watts"]))
+        self.setDriver('GV5', self.allStatusJson["Pump_1"]["Watts"])
 
         LOGGER.info("Pump RPM  {}".format(
-            self.allDataJson["Pump_1"]["RPM"]))
-        self.setDriver('GV6', self.allDataJson["Pump_1"]["RPM"])
+            self.allStatusJson["Pump_1"]["RPM"]))
+        self.setDriver('GV6', self.allStatusJson["Pump_1"]["RPM"])
 
         LOGGER.info("Pump GPM  {}".format(
-            self.allDataJson["Pump_1"]["GPM"]))
-        self.setDriver('GV7', self.allDataJson["Pump_1"]["GPM"])
+            self.allStatusJson["Pump_1"]["GPM"]))
+        self.setDriver('GV7', self.allStatusJson["Pump_1"]["GPM"])
 
         LOGGER.info("Salt Water Gen  {}".format(
-            self.allDataJson["leds"]["SWG"]))
-        self.setDriver('GV8', self.allDataJson["leds"]["SWG"])
+            self.allStatusJson["leds"]["SWG"]))
+        self.setDriver('GV8', self.allStatusJson["leds"]["SWG"])
         
         LOGGER.info("Salt Water Boost  {}".format(
-            self.allDataJson["leds"]["SWG/Boost"]))
-        self.setDriver('GV9', self.allDataJson["leds"]["SWG/Boost"])
+            self.allStatusJson["leds"]["SWG/Boost"]))
+        self.setDriver('GV9', self.allStatusJson["leds"]["SWG/Boost"])
         
         LOGGER.info("Pool Heat Setpoint  {}".format(
-            self.allDataJson["pool_htr_set_pnt"]))
-        self.setDriver('GV10', self.allDataJson["pool_htr_set_pnt"])
+            self.allStatusJson["pool_htr_set_pnt"]))
+        self.setDriver('GV10', self.allStatusJson["pool_htr_set_pnt"])
         
         LOGGER.info("SPA Heat Setpoint  {}".format(
-            self.allDataJson["spa_htr_set_pnt"]))
-        self.setDriver('GV11', self.allDataJson["spa_htr_set_pnt"])
+            self.allStatusJson["spa_htr_set_pnt"]))
+        self.setDriver('GV11', self.allStatusJson["spa_htr_set_pnt"])
         
         LOGGER.info("Solar Heat  {}".format(
-            self.allDataJson["leds"]["Solar_Heater"]))
-        pisOn = self.allDataJson["leds"]["Solar_Heater"]
+            self.allStatusJson["leds"]["Solar_Heater"]))
+        pisOn = self.allStatusJson["leds"]["Solar_Heater"]
         if pisOn == 'on':
             self.setDriver('GV12', 1)
         if pisOn == 'off':
             self.setDriver('GV12', 0)
             
         LOGGER.info("SPA Heat  {}".format(
-            self.allDataJson["leds"]["Spa_Heater"]))
-        pisOn = self.allDataJson["leds"]["Spa_Heater"]
+            self.allStatusJson["leds"]["Spa_Heater"]))
+        pisOn = self.allStatusJson["leds"]["Spa_Heater"]
         if pisOn == 'on':
             self.setDriver('GV13', 1)
         if pisOn == 'off':
             self.setDriver('GV13', 0)
             
         LOGGER.info("SPA Mode  {}".format(
-            self.allDataJson["leds"]["Spa_Mode"]))
-        pisOn = self.allDataJson["leds"]["Spa_Mode"]
+            self.allStatusJson["leds"]["Spa_Mode"]))
+        pisOn = self.allStatusJson["leds"]["Spa_Mode"]
         if pisOn == 'on':
             self.setDriver('GV14', 1)
         if pisOn == 'off':
             self.setDriver('GV14', 0)
 
 ############  Grab data from a new call to devices to get names
+
+        ##### GET Devices ####
+        self.allData = requests.get(
+            url='{}/api/devices'.format(self.apiBaseUrl))
+        
+        self.allDevicesJson = self.allData.json()
             
+        LOGGER.info("AUX-1 Name {}".format(
+            self.allDevicesJson["devices"][2]["name"]))
+        self.setDriver('GV22', self.allDevicesJson["devices"][2]["name"])
         LOGGER.info("AUX-1  {}".format(
-            self.allDataJson["leds"]["Aux_1"]))
-        pisOn = self.allDataJson["leds"]["Aux_1"]
+            self.allDevicesJson["devices"][2]["status"]))
+        pisOn = self.allDevicesJson["devices"][2]["status"]
         if pisOn == 'on':
             self.setDriver('GV15', 1)
         if pisOn == 'off':
             self.setDriver('GV15', 0)
             
+        LOGGER.info("AUX-2 Name {}".format(
+            self.allDevicesJson["devices"][3]["name"]))
+        
         LOGGER.info("AUX-2  {}".format(
-            self.allDataJson["leds"]["Aux_2"]))
-        pisOn = self.allDataJson["leds"]["Aux_2"]
+            self.allDevicesJson["devices"][3]["status"]))
+        pisOn = self.allDevicesJson["devices"][3]["status"]
         if pisOn == 'on':
             self.setDriver('GV16', 1)
         if pisOn == 'off':
             self.setDriver('GV16', 0)
             
+        LOGGER.info("AUX-3 Name  {}".format(
+            self.allDevicesJson["devices"][4]["name"]))
+        
         LOGGER.info("AUX-3  {}".format(
-            self.allDataJson["leds"]["Aux_3"]))
-        pisOn = self.allDataJson["leds"]["Aux_3"]
+            self.allDevicesJson["devices"][4]["status"]))
+        pisOn = self.allDevicesJson["devices"][4]["status"]
         if pisOn == 'on':
             self.setDriver('GV17', 1)
         if pisOn == 'off':
             self.setDriver('GV17', 0)
             
+        
+        LOGGER.info("AUX-4 Name  {}".format(
+            self.allDevicesJson["devices"][5]["name"]))
+        
         LOGGER.info("AUX-4  {}".format(
-            self.allDataJson["leds"]["Aux_4"]))
-        pisOn = self.allDataJson["leds"]["Aux_4"]
+            self.allDevicesJson["devices"][5]["status"]))
+        pisOn = self.allDevicesJson["devices"][5]["status"]
         if pisOn == 'on':
             self.setDriver('GV18', 1)
         if pisOn == 'off':
             self.setDriver('GV18', 0)
             
         LOGGER.info("AUX-5  {}".format(
-            self.allDataJson["leds"]["Aux_5"]))
-        pisOn = self.allDataJson["leds"]["Aux_5"]
+            self.allDevicesJson["devices"][6]["name"]))
+        
+        LOGGER.info("AUX-5  {}".format(
+            self.allDevicesJson["devices"][6]["status"]))
+        pisOn = self.allDevicesJson["devices"][6]["status"]
         if pisOn == 'on':
             self.setDriver('GV19', 1)
         if pisOn == 'off':
             self.setDriver('GV19', 0)
             
+        LOGGER.info("AUX-6 Name {}".format(
+            self.allDevicesJson["devices"][7]["name"]))
+        
         LOGGER.info("AUX-6  {}".format(
-            self.allDataJson["leds"]["Aux_6"]))
-        pisOn = self.allDataJson["leds"]["Aux_6"]
+            self.allDevicesJson["devices"][7]["status"]))
+        pisOn = self.allDevicesJson["devices"][7]["status"]
         if pisOn == 'on':
             self.setDriver('GV20', 1)
         if pisOn == 'off':
             self.setDriver('GV20', 0)
             
+        LOGGER.info("AUX-7 Name  {}".format(
+            self.allDevicesJson["devices"][8]["name"]))
+        
         LOGGER.info("AUX-7  {}".format(
-            self.allDataJson["leds"]["Aux_7"]))
-        pisOn = self.allDataJson["leds"]["Aux_7"]
+            self.allDevicesJson["devices"][8]["status"]))
+        pisOn = self.allDevicesJson["devices"][8]["status"]
         if pisOn == 'on':
             self.setDriver('GV21', 1)
         if pisOn == 'off':
@@ -237,13 +272,14 @@ class PoolNode(udi_interface.Node):
         {'driver': 'GV13', 'value': None, 'uom': 25, 'name': "SPA Heat"},
         {'driver': 'GV14', 'value': None, 'uom': 25, 'name': "SPA Mode"},
         {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-1"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-2"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-3"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-4"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-5"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-6"},
-        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-7"},
+        {'driver': 'GV16', 'value': None, 'uom': 25, 'name': "Aux-2"},
+        {'driver': 'GV17', 'value': None, 'uom': 25, 'name': "Aux-3"},
+        {'driver': 'GV18', 'value': None, 'uom': 25, 'name': "Aux-4"},
+        {'driver': 'GV19', 'value': None, 'uom': 25, 'name': "Aux-5"},
+        {'driver': 'GV20', 'value': None, 'uom': 25, 'name': "Aux-6"},
+        {'driver': 'GV21', 'value': None, 'uom': 25, 'name': "Aux-7"},
         {'driver': 'CLISPH', 'value': 45, 'uom': 17, 'name': "Setpoint adj"},
+        {'driver': 'GV22', 'value': None, 'uom': 56, 'name': "Aux-1 Name"},
         {'driver': 'ST', 'value': 0, 'uom': 25, 'name': "Online"},
     ]
 

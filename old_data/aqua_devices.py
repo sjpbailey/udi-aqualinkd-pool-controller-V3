@@ -195,14 +195,14 @@ data = {
     "type": "devices"
 }
 print()
-print("Pump Name: {}".format(data["devices"][0]["name"]))
+print("Pump Name: {}".format(data["devices"][8]["name"]))
 print("Pump ID: {}".format(data["devices"][0]["id"]))
 print("Pump GPM: {}".format(data["devices"][0]["Pump_GPM"]))
 print("Pump RPM: {}".format(data["devices"][0]["Pump_RPM"]))
 print("Pump Watts: {}".format(data["devices"][0]["Pump_Watts"]))
 print("Pump Type: {}".format(data["devices"][0]["Pump_Type"]))
 print("Status int: {}".format(data["devices"][0]["int_status"]))
-print("Status: {}".format(data["devices"][0]["status"]))
+print("Status: {}".format(data["devices"][2]["status"]))
 print("State: {}".format(data["devices"][0]["state"]))
 
 
@@ -228,7 +228,7 @@ for i in data["devices"]:
             print()'''
         
         
-        if i["type_ext"] == "switch_program" or "switch_timer":
+        '''if i["type_ext"] == "switch_program" or "switch_timer":
             print("Switch_EXT")
             print(print("ID: {}".format(i["id"])))
             print(print("Status int: {}".format(i["int_status"])))
@@ -236,7 +236,7 @@ for i in data["devices"]:
             print(print("State: {}".format(i["state"])))
             print(print("Status: {}".format(i["status"])))
             print(print("Type External: {}".format(i["type_ext"])))
-            print()
+            print()'''
         
         
         
