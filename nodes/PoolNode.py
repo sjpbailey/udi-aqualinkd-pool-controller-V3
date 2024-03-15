@@ -235,9 +235,12 @@ class PoolNode(udi_interface.Node):
         {'driver': 'GV13', 'value': None, 'uom': 25, 'name': "SPA Heat"},
         {'driver': 'GV14', 'value': None, 'uom': 25, 'name': "SPA Mode"},
         {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-1"},
-        
-        
-        
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-2"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-3"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-4"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-5"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-6"},
+        {'driver': 'GV15', 'value': None, 'uom': 25, 'name': "Aux-7"},
         {'driver': 'CLISPH', 'value': 45, 'uom': 17, 'name': "Setpoint adj"},
         {'driver': 'ST', 'value': 0, 'uom': 25, 'name': "Online"},
     ]
