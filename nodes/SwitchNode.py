@@ -33,7 +33,6 @@ class SwitchNode(udi_interface.Node):
 
     def start(self):
         ##### GET Devices ####
-        self.allDevicesJson = self.allData.json()
 
         if self.allDevicesJson == 200:
             self.setDriver('ST', 1)
