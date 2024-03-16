@@ -107,14 +107,13 @@ class PoolController(udi_interface.Node):
                     LOGGER.info("Switch_EXT")
                     LOGGER.info(print("ID: {}".format(i["id"])))
                     id = i["id"]
-                    LOGGER.info(
-                        print("Status int: {}".format(i["int_status"])))
+                    LOGGER.info("Status int: {}".format(i["int_status"]))
                     LOGGER.info(print("Name: {}".format(i["name"])))
                     name = i["name"]
                     LOGGER.info(print("State: {}".format(i["state"])))
                     LOGGER.info(print("Status: {}".format(i["status"])))
-                    LOGGER.info(
-                        print("Type External: {}".format(i["type_ext"])))
+
+                    LOGGER.info("Type External: {}".format(i["type_ext"]))
                     address = 'zone_{}'.format(id)
                     self.poly.addNode(SwitchNode(
                         self.poly, self.address, address, name, self.allDevicesJson, self.api_url))
