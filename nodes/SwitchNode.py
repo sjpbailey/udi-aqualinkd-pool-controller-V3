@@ -12,7 +12,7 @@ LOGGER = udi_interface.LOGGER
 
 class SwitchNode(udi_interface.Node):
 
-    def __init__(self, polyglot, primary, address, name, allDevicesJson, api_url):
+    def __init__(self, polyglot, primary, address, name, allData, apiBaseUrl, api_url, allDevicesJson):
 
         super(SwitchNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
@@ -20,6 +20,11 @@ class SwitchNode(udi_interface.Node):
 
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
+
+        self.allData = allData
+        self.apiBaseUrl = apiBaseUrl
+        self.api_url = api_url
+
         self.address = address
         LOGGER.info(self.address)
         self.name = name
@@ -29,17 +34,18 @@ class SwitchNode(udi_interface.Node):
         id1 = id
         LOGGER.info(id1)
         self.id1 = id1
-        self.api_url = api_url
 
     def start(self):
         ##### GET Devices ####
+        self.allData = requests.get(
+            url='{}/api/devices'.format(self.apiBaseUrl))
 
         if self.allDevicesJson == 200:
             self.setDriver('ST', 1)
         else:
             self.setDriver('ST', 0)
 
-        self.http = urllib3.PoolManager()
+        # self.http = urllib3.PoolManager()
 
     def poll(self, polltype):
         if 'longPoll' in polltype:
