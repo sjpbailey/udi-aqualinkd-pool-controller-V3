@@ -89,6 +89,8 @@ class PoolController(udi_interface.Node):
 
             self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
                               'Status', allData, self.apiBaseUrl, self.api_url))
+        else:
+            pass
 
             # LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
             # self.setDriver('GV0', self.allDataJson["air_temp"])
@@ -96,32 +98,35 @@ class PoolController(udi_interface.Node):
         # Grab data from a new call to devices to get names
 
         ##### GET Devices ####
-        self.allData = requests.get(
-            url='{}/api/devices'.format(self.apiBaseUrl))
+        if self.api_url:
+            self.apiBaseUrl = self.api_url
+            # Get all data from nodejs pool controller api
+            self.allData = requests.get(
+                url='{}/api/devices'.format(self.apiBaseUrl))
 
-        self.allDevicesJson = self.allData.json()
+            self.allDevicesJson = self.allData.json()
 
-        for i in self.allDevicesJson["devices"]:
-            try:
-                if i["type_ext"] == "switch_program" or "switch_timer":
-                    LOGGER.info("Switch_EXT")
-                    LOGGER.info(print("ID: {}".format(i["id"])))
-                    id = i["id"]
-                    LOGGER.info("Status int: {}".format(i["int_status"]))
-                    LOGGER.info(print("Name: {}".format(i["name"])))
-                    name = i["name"]
-                    LOGGER.info(print("State: {}".format(i["state"])))
-                    LOGGER.info(print("Status: {}".format(i["status"])))
+            for i in self.allDevicesJson["devices"]:
+                try:
+                    if i["type_ext"] == "switch_program" or "switch_timer":
+                        LOGGER.info("Switch_EXT")
+                        LOGGER.info(print("ID: {}".format(i["id"])))
+                        id = i["id"]
+                        LOGGER.info("Status int: {}".format(i["int_status"]))
+                        LOGGER.info(print("Name: {}".format(i["name"])))
+                        name = i["name"]
+                        LOGGER.info(print("State: {}".format(i["state"])))
+                        LOGGER.info(print("Status: {}".format(i["status"])))
 
-                    LOGGER.info("Type External: {}".format(i["type_ext"]))
-                    address = 'zone_{}'.format(id)
-                    self.poly.addNode(SwitchNode(
-                        self.poly, self.address, address, name, self.allDevicesJson, self.api_url))
+                        LOGGER.info("Type External: {}".format(i["type_ext"]))
+                        address = 'zone_{}'.format(id)
+                        self.poly.addNode(SwitchNode(
+                            self.poly, self.address, address, name, self.allDevicesJson, self.api_url))
                     # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
                     LOGGER.info("Auxillary Installation Complete")
 
-            except KeyError:
-                LOGGER.info(f"Item not found! ")
+                except KeyError:
+                    LOGGER.info(f"Item not found! ")
 
         '''for i in self.allDataJson["circuits"]:
             name = i["name"]
