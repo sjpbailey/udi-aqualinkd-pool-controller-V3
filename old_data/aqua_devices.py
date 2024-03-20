@@ -194,7 +194,7 @@ data = {
     "time": "5:27 PM",
     "type": "devices"
 }
-print()
+"""print()
 print("Pump Name: {}".format(data["devices"][8]["name"]))
 print("Pump ID: {}".format(data["devices"][0]["id"]))
 print("Pump GPM: {}".format(data["devices"][0]["Pump_GPM"]))
@@ -203,11 +203,31 @@ print("Pump Watts: {}".format(data["devices"][0]["Pump_Watts"]))
 print("Pump Type: {}".format(data["devices"][0]["Pump_Type"]))
 print("Status int: {}".format(data["devices"][0]["int_status"]))
 print("Status: {}".format(data["devices"][2]["status"]))
-print("State: {}".format(data["devices"][0]["state"]))
+print("State: {}".format(data["devices"][0]["state"]))"""
 
+try:
+    for i in data["devices"]:
+        # print(i)
+        # print(print("ID: {}".format(i["id"])))
 
-for i in data["devices"]:
-    try:
+        """if i["type"] == "temperature":
+            print("Temperature")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Value: {}".format(i["value"])))
+            print()"""
+
+        """if i["type"] == "setpoint_thermo":
+            print("Switch Heaters")
+            print(print("ID: {}".format(i["id"])))
+            print(print("Status int: {}".format(i["int_status"])))
+            print(print("Name: {}".format(i["name"])))
+            print(print("State: {}".format(i["state"])))
+            print(print("Status: {}".format(i["status"])))
+            print(print("Type External: {}".format(i["type_ext"])))
+            print()"""
+
         if i["type_ext"] == "switch_program" or "switch_timer":
             print("Switch_EXT")
             print(print("ID: {}".format(i["id"])))
@@ -217,45 +237,8 @@ for i in data["devices"]:
             print(print("Status: {}".format(i["status"])))
             print(print("Type External: {}".format(i["type_ext"])))
             print()
-            
-    except KeyError:
-        print(f"Alert, Item not found! ")
-            
-    #print(i)
-""" try:
-        '''if i["type"] == "temperature":
-            print("Temperature")
-            print(print("ID: {}".format(i["id"])))
-            print(print("Name: {}".format(i["name"])))
-            print(print("State: {}".format(i["state"])))
-            print(print("Value: {}".format(i["value"])))
-            print()'''
-            
-        '''if i["type"] == "setpoint_thermo":
-            print("Switch Heaters")
-            print(print("ID: {}".format(i["id"])))
-            print(print("Status int: {}".format(i["int_status"])))
-            print(print("Name: {}".format(i["name"])))
-            print(print("State: {}".format(i["state"])))
-            print(print("Status: {}".format(i["status"])))
-            print(print("Type External: {}".format(i["type_ext"])))
-            print()'''
-        
-        
-        '''if i["type_ext"] == "switch_program" or "switch_timer":
-            print("Switch_EXT")
-            print(print("ID: {}".format(i["id"])))
-            print(print("Status int: {}".format(i["int_status"])))
-            print(print("Name: {}".format(i["name"])))
-            print(print("State: {}".format(i["state"])))
-            print(print("Status: {}".format(i["status"])))
-            print(print("Type External: {}".format(i["type_ext"])))
-            print()'''
-        
-        
-        
-        
-        '''if i["type"] == "setpoint_thermo" or "setpoint_freeze" or "setpoint_swg":
+
+        """if i["type"] == "setpoint_thermo" or "setpoint_freeze" or "setpoint_swg":
             print("Setpoint")
             print(print("ID: {}".format(i["id"])))
             print(print("Status int: {}".format(i["int_status"])))
@@ -264,24 +247,22 @@ for i in data["devices"]:
             print(print("State: {}".format(i["state"])))
             print(print("Status: {}".format(i["status"])))
             print(print("Value: {}".format(i["value"])))
-            print()'''
-            
-        '''if i["type"] == "value":
+            print()
+
+        if i["type"] == "value":
             print("Value")
             print(print("ID: {}".format(i["id"])))
             print(print("Name: {}".format(i["name"])))
             print(print("State: {}".format(i["state"])))
             print(print("Value: {}".format(i["value"])))
-            
-            
+
         if i["type_ext"] == "switch_vsp":
             print("Value")
             print(print("ID: {}".format(i["id"])))
             print(print("Name: {}".format(i["name"])))
             print(print("State: {}".format(i["state"])))
-            #print(print("Value: {}".format(i["value"])))'''
-            
-            
-    except KeyError:
-        print(f"Alert, Item not found! ")"""
-    
+            # print(print("Value: {}".format(i["value"])))"""
+
+
+except KeyError:
+    print(f"Alert, Item not found! ")

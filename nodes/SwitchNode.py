@@ -12,7 +12,7 @@ LOGGER = udi_interface.LOGGER
 
 class SwitchNode(udi_interface.Node):
 
-    def __init__(self, polyglot, primary, address, name, allData, apiBaseUrl, api_url, allDevicesJson):
+    def __init__(self, polyglot, primary, address, name, state, status1):
 
         super(SwitchNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
@@ -21,15 +21,12 @@ class SwitchNode(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
 
-        self.allData = allData
-        self.apiBaseUrl = apiBaseUrl
-        self.api_url = api_url
-
+        self.state = state
+        self.status1 = status1
         self.address = address
         LOGGER.info(self.address)
         self.name = name
         LOGGER.info(name)
-        self.allDevicesJson = allDevicesJson
         id = address.strip('zone_')
         id1 = id
         LOGGER.info(id1)
@@ -37,13 +34,18 @@ class SwitchNode(udi_interface.Node):
 
     def start(self):
         ##### GET Devices ####
-        self.allData = requests.get(
-            url='{}/api/devices'.format(self.apiBaseUrl))
+        # self.allData = requests.get(
+        #    url='{}/api/devices'.format(self.apiBaseUrl))
 
-        if self.allDevicesJson == 200:
+        if self.state == 1:
             self.setDriver('ST', 1)
         else:
             self.setDriver('ST', 0)
+
+        if self.status1 == 1:
+            self.setDriver('GV1', 1)
+        else:
+            self.setDriver('GV1', 0)
 
         # self.http = urllib3.PoolManager()
 
@@ -62,7 +64,7 @@ class SwitchNode(udi_interface.Node):
         response = requests.put(
             'http://localhost/api/' + self.id1 + '/set', data=json_data)
 
-        self.setDriver('GV1', 1)
+        # self.setDriver('GV1', 1)
 
     def cmd_off(self, command):
 
@@ -73,7 +75,7 @@ class SwitchNode(udi_interface.Node):
         response = requests.put(
             'http://localhost/api/' + self.id1 + '/set', data=json_data)
 
-        self.setDriver('GV1', 0)
+        # self.setDriver('GV1', 0)
 
     def query(self, command=None):
         self.reportDrivers()
