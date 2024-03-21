@@ -27,7 +27,7 @@ class SwitchNode(udi_interface.Node):
         LOGGER.info(self.address)
         self.name = name
         LOGGER.info(name)
-        id = address.strip('zone_')
+        id = address  # address.strip('zone_')
         id1 = id
         LOGGER.info(id1)
         self.id1 = id1
