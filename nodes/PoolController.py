@@ -120,7 +120,7 @@ class PoolController(udi_interface.Node):
                         LOGGER.info(print("Status: {}".format(i["status"])))
                         status1 = i["status"]
                         LOGGER.info("Type External: {}".format(i["type_ext"]))
-                        address = 'zone_{}'.format(id)
+                        address = '{}'.format(id)
 
                         self.poly.addNode(SwitchNode(
                             self.poly, self.address, address, name, state, status1))
