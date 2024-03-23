@@ -113,11 +113,11 @@ class PoolController(udi_interface.Node):
                     LOGGER.info(print("Status: {}".format(i["status"])))
                     LOGGER.info("Type External: {}".format(i["type_ext"]))
 
-                    self.poly.addNode(TemplateNode(
-                        self.poly, self.address, address, name))  # state, status1, self.apiBaseUrl, self.api_url))
+                    # self.poly.addNode(TemplateNode(
+                    #    self.poly, self.address, address, name))  # state, status1, self.apiBaseUrl, self.api_url))
 
-                    # self.poly.addNode(SwitchNode(
-                    #    self.poly, self.address, address, name, state, status1, self.apiBaseUrl, self.api_url))
+                    self.poly.addNode(SwitchNode(
+                        self.poly, self.address, address, name, state, status1, self.apiBaseUrl, self.api_url))
                     # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
                     LOGGER.info("Auxillary Installation Complete")
 
