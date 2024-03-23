@@ -89,7 +89,7 @@ class SwitchNode(udi_interface.Node):
         {'driver': 'GV1', 'value': 1, 'uom': 25, 'name': 'Enabled'}
     ]
 
-    id = 'switchnodeid'
+    id = 'switchnode'
 
     commands = {
         'DON': cmd_on,
