@@ -36,7 +36,23 @@ class SwitchNode(udi_interface.Node):
         LOGGER.info(name)
 
     def start(self):
-        ##### GET Devices ####
+        """
+        Optional.
+        This method is called after Polyglot has added the node per the
+        START event subscription above
+        """
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
+        self.setDriver('ST', 1)
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
+        self.setDriver('ST', 0)
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
+        self.setDriver('ST', 1)
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
+        self.setDriver('ST', 0)
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
+        self.http = urllib3.PoolManager()
+
+        '''##### GET Devices ####
         self.allData = requests.get(
             url='{}/api/devices'.format(self.apiBaseUrl))
         self.setDriver('ST', 1)
@@ -44,7 +60,7 @@ class SwitchNode(udi_interface.Node):
         # if self.state == 1:
         #    self.setDriver('ST', 1)
         # else:
-        #    self.setDriver('ST', 0)
+        #    self.setDriver('ST', 0)'''
 
         '''if self.status1 == 1:
             self.setDriver('GV1', 1)
