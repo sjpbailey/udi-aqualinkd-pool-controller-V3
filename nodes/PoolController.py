@@ -86,8 +86,8 @@ class PoolController(udi_interface.Node):
             self.allDataJson = allData.json()
             # LOGGER.info(self.allDataJson)
 
-            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
-                                       allData, self.apiBaseUrl, self.api_url))
+            # self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
+            #                           allData, self.apiBaseUrl, self.api_url))
             LOGGER.info("Statuses Installed")
             self.go()
 
