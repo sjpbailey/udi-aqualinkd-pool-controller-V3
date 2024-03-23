@@ -216,6 +216,48 @@ class PoolNode(udi_interface.Node):
 
             LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
 
+    def setOnOff(self, command=None):
+        # Input Output Control
+        self.mapping = {
+            'DON1': {'output': 'GV15', 'index': (1)},
+            'DON2': {'output': 'GV16', 'index': (2)},
+            'DON3': {'output': 'GV17', 'index': (3)},
+            'DON4': {'output': 'GV18', 'index': (4)},
+            'DON5': {'output': 'GV19', 'index': (5)},
+            'DON6': {'output': 'GV20', 'index': (6)},
+            'DON7': {'output': 'GV21', 'index': (7)},
+
+        }
+        index = self.mapping[command['cmd']]['index']
+        control = self.mapping[command['cmd']]['output']
+        output = self.mapping[command['cmd']]['output']
+        self.ctrl = int(command.get('value',))
+        self.setDriver(control, self.ctrl)
+        if self.ctrl == 1:
+            json_data = {
+                'value': '1',
+            }
+
+            response = requests.put(
+                self.api_url + 'aux_' + index + '/set', json=json_data)
+
+        elif self.ctrl == 0:
+            json_data = {
+                'value': '0',
+            }
+
+            response = requests.put(
+                self.api_url + 'aux_' + index + '/set', json=json_data)
+
+        '''if self.ctrl == 1:
+            self.bc.binaryOutput(index, 1)
+            self.setDriver(output, 1)
+            LOGGER.info('Output On')
+        elif self.ctrl == 0:
+            self.bc.binaryOutput(index, 0)
+            self.setDriver(output, 0)
+            LOGGER.info('Output Off')'''
+
     def cmd_on(self, command):
         json_data = {'value': '1', }
 
@@ -281,6 +323,13 @@ class PoolNode(udi_interface.Node):
     id = 'poolnode'
 
     commands = {
+        'DON1': setOnOff,
+        'DON2': setOnOff,
+        'DON3': setOnOff,
+        'DON4': setOnOff,
+        'DON5': setOnOff,
+        'DON6': setOnOff,
+        'DON7': setOnOff,
         'DON': cmd_on,
         'DOF': cmd_off,
         'SET_TEMP': cmd_set_temp,
