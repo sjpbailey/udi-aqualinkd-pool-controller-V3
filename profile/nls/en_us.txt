@@ -48,8 +48,8 @@ CMD-bodypool-SET_TEMP-NAME = Heat Setpoint
 #CMD-bodypool-SET_SPEED-NAME = Pump RPM
 
 # AUX Circuit Nodes
-ND-switchnodeid-NAME = AUX Switch
-ND-switchnodeid-ICON = Irrigation
+ND-switchnode-NAME = AUX Switch
+ND-switchnode-ICON = Irrigation
 ST-switch0-ST-NAME = Node Status
 ST-switch0-GV1-NAME = Device Command
 CMD-switch0-QUERY-NAME = Query

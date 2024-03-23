@@ -70,7 +70,7 @@
 
 
     <!-- switchnodeid -->
-    <nodeDef id="switchnodeid" nls="switch0">
+    <nodeDef id="switchnode" nls="switch0">
         <editors />
         <sts>
             <st id="ST" editor="ONLINE" />

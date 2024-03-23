@@ -63,7 +63,7 @@ class SwitchNode(udi_interface.Node):
         }
 
         response = requests.put(
-            'http://localhost/api/' + self.id1 + '/set', data=json_data)
+            'http://shorewood.webhop.org:100/api/' + self.id1 + '/set', data=json_data)
 
         # self.setDriver('GV1', 1)
 
@@ -74,7 +74,7 @@ class SwitchNode(udi_interface.Node):
         }
 
         response = requests.put(
-            'http://localhost/api/' + self.id1 + '/set', data=json_data)
+            'http://shorewood.webhop.org:100/api/' + self.id1 + '/set', data=json_data)
 
         # self.setDriver('GV1', 0)
 
@@ -83,8 +83,8 @@ class SwitchNode(udi_interface.Node):
         self.start()
 
     drivers = [
-        {'driver': 'ST', 'value': 0, 'uom': 25, 'name': 'Online'},
-        {'driver': 'GV1', 'value': 0, 'uom': 25, 'name': 'Enabled'}
+        {'driver': 'ST', 'value': 1, 'uom': 25, 'name': 'Online'},
+        {'driver': 'GV1', 'value': 1, 'uom': 25, 'name': 'Enabled'}
     ]
 
     id = 'switchnodeid'

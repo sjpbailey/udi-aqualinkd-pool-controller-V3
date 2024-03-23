@@ -63,7 +63,6 @@ class PoolController(udi_interface.Node):
         else:
             LOGGER.debug('shortPoll (controller)')
             self.reportDrivers()
-            self.query()
 
     def query(self, command=None):
         nodes = self.poly.getNodes()
