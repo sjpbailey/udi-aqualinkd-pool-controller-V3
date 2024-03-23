@@ -6,6 +6,7 @@ import urllib3
 
 LOGGER = udi_interface.LOGGER
 
+
 class TemplateNode(udi_interface.Node):
     """
     This is the class that all the Nodes will be represented by. You will
@@ -28,6 +29,7 @@ class TemplateNode(udi_interface.Node):
     query(): Called when ISY sends a query request to Polyglot for this
         specific node
     """
+
     def __init__(self, polyglot, primary, address, name):
         """
         Optional.
@@ -41,7 +43,7 @@ class TemplateNode(udi_interface.Node):
         """
         super(TemplateNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
-        self.lpfx = '%s:%s' % (address,name)
+        self.lpfx = '%s:%s' % (address, name)
 
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
@@ -52,15 +54,15 @@ class TemplateNode(udi_interface.Node):
         This method is called after Polyglot has added the node per the
         START event subscription above
         """
-        LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
         self.setDriver('ST', 1)
-        LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
         self.setDriver('ST', 0)
-        LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
         self.setDriver('ST', 1)
-        LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
         self.setDriver('ST', 0)
-        LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+        LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
         self.http = urllib3.PoolManager()
 
     def poll(self, polltype):
@@ -74,10 +76,10 @@ class TemplateNode(udi_interface.Node):
         else:
             LOGGER.debug('shortPoll (node)')
             if int(self.getDriver('ST')) == 1:
-                self.setDriver('ST',0)
+                self.setDriver('ST', 0)
             else:
-                self.setDriver('ST',1)
-            LOGGER.debug('%s: get ST=%s',self.lpfx,self.getDriver('ST'))
+                self.setDriver('ST', 1)
+            LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
 
     def cmd_on(self, command):
         """
@@ -95,17 +97,16 @@ class TemplateNode(udi_interface.Node):
         """
         self.setDriver('ST', 0)
 
-    def cmd_ping(self,command):
+    def cmd_ping(self, command):
         """
         Not really a ping, but don't care... It's an example to test LOGGER
         in a module...
         """
         LOGGER.debug("cmd_ping:")
-        r = self.http.request('GET',"google.com")
+        r = self.http.request('GET', "google.com")
         LOGGER.debug("cmd_ping: r={}".format(r))
 
-
-    def query(self,command=None):
+    def query(self, command=None):
         """
         Called by ISY to report all drivers for this node. This is done in
         the parent class, so you don't need to override this method unless
@@ -133,7 +134,7 @@ class TemplateNode(udi_interface.Node):
     this tells it which method to call. DON calls setOn, etc.
     """
     commands = {
-                    'DON': cmd_on,
-                    'DOF': cmd_off,
-                    'PING': cmd_ping
-                }
+        'DON': cmd_on,
+        'DOF': cmd_off,
+        'PING': cmd_ping
+    }
