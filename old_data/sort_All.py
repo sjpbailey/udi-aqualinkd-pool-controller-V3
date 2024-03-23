@@ -4,6 +4,7 @@ import requests
 
 ################### Commands ###################################
 
+
 ###### Heating Setpoint ######
 '''json_data = {
     "id": 1,
@@ -46,16 +47,22 @@ print(response.text)
 if response.status_code == 200:
     print("Start/Stop")'''
 
-'''
+
 ###### Pump Status ######
 
-response = requests.get('https://192.168.1.53:4200/config/options/pumps/')
+response = requests.get('http://shorewood.webhop.org:100/api/status')
 print()
 print(response)
 print(response.text)
 if response.status_code == 200:
-    print("Pump Status?")'''
+    print("Status")
 
+response = requests.get('http://shorewood.webhop.org:100/api/devices')
+print()
+print(response)
+print(response.text)
+if response.status_code == 200:
+    print("Devices")
 
 '''
 ###### Override Circuit ######
