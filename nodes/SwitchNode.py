@@ -1,10 +1,10 @@
 ''' Circuit Nodejs Pool
     copyright© 2024 SJBailey© '''
 import udi_interface
-import json
+# import json
 import requests
-import sys
-import time
+# import sys
+# import time
 import urllib3
 
 LOGGER = udi_interface.LOGGER
@@ -12,7 +12,7 @@ LOGGER = udi_interface.LOGGER
 
 class SwitchNode(udi_interface.Node):
 
-    def __init__(self, polyglot, primary, address, name, state, status1, apiBaseUrl):
+    def __init__(self, polyglot, primary, address, name, state, status1, apiBaseUrl, api_url):
 
         super(SwitchNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
@@ -21,6 +21,7 @@ class SwitchNode(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
 
+        self.api_url = api_url
         self.apiBaseUrl = apiBaseUrl
         self.state = state
         self.status1 = status1
@@ -64,7 +65,7 @@ class SwitchNode(udi_interface.Node):
         }
 
         response = requests.put(
-            'http://shorewood.webhop.org:100/api/' + self.id1 + '/set', data=json_data)
+            self.api_url + self.id1 + '/set', json=json_data)
 
         # self.setDriver('GV1', 1)
 
@@ -75,7 +76,7 @@ class SwitchNode(udi_interface.Node):
         }
 
         response = requests.put(
-            'http://shorewood.webhop.org:100/api/' + self.id1 + '/set', data=json_data)
+            self.api_url + self.id1 + '/set', json=json_data)
 
         # self.setDriver('GV1', 0)
 
