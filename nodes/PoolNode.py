@@ -55,8 +55,7 @@ class PoolNode(udi_interface.Node):
         self.setDriver(
             'GV2', self.allStatusJson["frz_protect_set_pnt"])
 
-        LOGGER.info("Pool Temp  {}".format(
-            self.allStatusJson["pool_temp"]))
+        LOGGER.info("Pool Temp  {}".format(self.allStatusJson["pool_temp"]))
         self.setDriver('GV3', self.allStatusJson["pool_temp"])
 
         LOGGER.info("Pump Status  {}".format(
