@@ -87,129 +87,40 @@ class PoolController(udi_interface.Node):
             self.allDataJson = allData.json()
             # LOGGER.info(self.allDataJson)
 
-            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr',
-                              'Status', allData, self.apiBaseUrl, self.api_url))
-        else:
-            pass
+            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
+                                       allData, self.apiBaseUrl, self.api_url))
+            LOGGER.info("Statuses Installed")
+            self.go()
 
-            # LOGGER.info("Air Temp  {}".format(self.allDataJson["air_temp"]))
-            # self.setDriver('GV0', self.allDataJson["air_temp"])
-
-        # Grab data from a new call to devices to get names
-
+    def go(self):
         ##### GET Devices ####
-        if self.api_url:
-            self.apiBaseUrl = self.api_url
-            # Get all data from nodejs pool controller api
-            self.allData = requests.get(
-                url='{}/api/devices'.format(self.apiBaseUrl))
+        # Get all data from nodejs pool controller api
+        self.allData = requests.get(url='{}/api/devices'.format(self.api_url))
+        self.allDevicesJson = self.allData.json()
 
-            self.allDevicesJson = self.allData.json()
+        for i in self.allDevicesJson["devices"]:
+            try:
+                if i["type_ext"] == "switch_program" or "switch_timer":
+                    name = i["name"]
+                    id = i["id"]
+                    state = i["state"]
+                    status1 = i["status"]
+                    address = '{}'.format(id)
+                    LOGGER.info("Switch_EXT")
+                    LOGGER.info(print("ID: {}".format(i["id"])))
+                    LOGGER.info("Status int: {}".format(i["int_status"]))
+                    LOGGER.info(print("Name: {}".format(i["name"])))
+                    LOGGER.info(print("State: {}".format(i["state"])))
+                    LOGGER.info(print("Status: {}".format(i["status"])))
+                    LOGGER.info("Type External: {}".format(i["type_ext"]))
 
-            for i in self.allDevicesJson["devices"]:
-                try:
-                    if i["type_ext"] == "switch_program" or "switch_timer":
-                        LOGGER.info("Switch_EXT")
-                        LOGGER.info(print("ID: {}".format(i["id"])))
-                        id = i["id"]
-                        LOGGER.info("Status int: {}".format(i["int_status"]))
-                        LOGGER.info(print("Name: {}".format(i["name"])))
-                        name = i["name"]
-                        LOGGER.info(print("State: {}".format(i["state"])))
-                        state = i["state"]
-                        LOGGER.info(print("Status: {}".format(i["status"])))
-                        status1 = i["status"]
-                        LOGGER.info("Type External: {}".format(i["type_ext"]))
-                        address = '{}'.format(id)
-
-                        self.poly.addNode(SwitchNode(
-                            self.poly, self.address, address, name, state, status1))
+                    self.poly.addNode(SwitchNode(
+                        self.poly, self.address, address, name, state, status1))
                     # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
                     LOGGER.info("Auxillary Installation Complete")
 
-                except KeyError:
-                    LOGGER.info(f"Item not found! ")
-
-        '''for i in self.allDataJson["circuits"]:
-            name = i["name"]
-            id = i["id"]
-            # isOn = i["isOn"]
-            LOGGER.info(i["name"])  # , i["id"], i['isOn'])
-            LOGGER.info(i["id"])
-            # LOGGER.info(i["isOn"])
-            self.allDataJson = self.allDataJson
-            address = 'zone_{}'.format(id)
-            LOGGER.info(address)
-            self.poly.addNode(SwitchNode(
-                self.poly, self.address, address, name, self.apiBaseUrl, self.api_url))
-            # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
-            LOGGER.info("Circuit Installation Complete")
-        else:
-            LOGGER.info("Circuit Not Found")
-
-        for i in self.allDataJson["pumps"]:
-            self.allDataJson = self.allDataJson
-            self.api_url = self.api_url
-            name = i["name"]
-            LOGGER.info(i["name"])
-            address = i["address"]
-            LOGGER.info(i["address"])
-            LOGGER.info(i["type"]['desc'])
-            address = 'pump_{}'.format(address)
-            LOGGER.info("ID:  {}".format(i["id"]))
-            pid = i["id"]
-            if i["type"]['desc'] == "Intelliflo VSF":
-                LOGGER.info("Install Intelliflo VSF")
-                self.poly.addNode(PumpNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Intelliflo VS":
-                LOGGER.info("Install Intelliflo VS")
-                self.poly.addNode(PumpIVSNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Intelliflo VF":
-                LOGGER.info("Install Intelliflo VF")
-                self.poly.addNode(PumpIVFNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "SuperFlo VS":
-                LOGGER.info("Install SuperFlo VS")
-                self.poly.addNode(PumpISVSNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Two Speed":
-                LOGGER.info("Install Two Speed")
-                self.poly.addNode(Pump2SPDNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Single Speed":
-                LOGGER.info("Install Single Speed")
-                self.poly.addNode(Pump1SPDNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Hayward Eco/TriStar VS":
-                LOGGER.info("Install Hayward Eco/TriStar VS")
-                self.poly.addNode(PumpTriStarNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            elif i["type"]['desc'] == "Hayward Relay VS":
-                LOGGER.info("Install Hayward Relay VS")
-                self.poly.addNode(PumpHSVSNode(
-                    self.poly, self.address, address, name, allData, self.apiBaseUrl, self.api_url, pid))
-            else:
-                LOGGER.info("Pump Not Found")
-
-        for i in self.allDataJson["heaters"]:
-            LOGGER.info(i['name'])
-            LOGGER.info(i['id'])
-            LOGGER.info(i['type']['desc'])
-            LOGGER.info(i['isOn'])
-            LOGGER.info("Heater Discovery Complete")
-
-        else:
-            LOGGER.info("No Heaters Found")
-
-        for i in self.allDataJson["virtualCircuits"]:
-            LOGGER.info(i['name'])
-            LOGGER.info(i['id'])
-            LOGGER.info(i['isOn'])
-            LOGGER.info("Virtual Circuit Discovery Complete")
-        else:
-            LOGGER.info("No Virtual Circuits Found")'''
+            except KeyError:
+                LOGGER.info(f"Item not found! ")
 
     def delete(self):
         LOGGER.info('Being deleted')
