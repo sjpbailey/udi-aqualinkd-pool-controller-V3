@@ -246,7 +246,7 @@ class PoolNode(udi_interface.Node):
             }
 
             response = requests.put(
-                self.api_url + 'aux_' + index + '/set', json=json_data)
+                self.api_url + 'Aux_' + index + '/set', json=json_data)
 
         '''if self.ctrl == 1:
             self.bc.binaryOutput(index, 1)
