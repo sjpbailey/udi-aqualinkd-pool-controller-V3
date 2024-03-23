@@ -30,13 +30,13 @@ ST-bodypool-GV11-NAME = Setpoint SPA
 ST-bodypool-GV12-NAME = Solar Heat
 ST-bodypool-GV13-NAME = SPA Heat
 ST-bodypool-GV14-NAME = SPA Mode
-#ST-bodypool-GV15-NAME = AUX-1 Status
-#ST-bodypool-GV16-NAME = AUX-2 Status
-#ST-bodypool-GV17-NAME = AUX-3 Status
-#ST-bodypool-GV18-NAME = AUX-4 Status
-#ST-bodypool-GV19-NAME = AUX-5 Status
-#ST-bodypool-GV20-NAME = AUX-6 Status
-#ST-bodypool-GV21-NAME = AUX-7 Status
+ST-bodypool-GV15-NAME = AUX-1 Status
+ST-bodypool-GV16-NAME = AUX-2 Status
+ST-bodypool-GV17-NAME = AUX-3 Status
+ST-bodypool-GV18-NAME = AUX-4 Status
+ST-bodypool-GV19-NAME = AUX-5 Status
+ST-bodypool-GV20-NAME = AUX-6 Status
+ST-bodypool-GV21-NAME = AUX-7 Status
 
 
 ST-bodypool-ST-NAME = Node Status
