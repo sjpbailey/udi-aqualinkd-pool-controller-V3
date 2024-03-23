@@ -12,7 +12,7 @@ LOGGER = udi_interface.LOGGER
 
 class SwitchNode(udi_interface.Node):
 
-    def __init__(self, polyglot, primary, address, name, state, status1):
+    def __init__(self, polyglot, primary, address, name, state, status1, apiBaseUrl):
 
         super(SwitchNode, self).__init__(polyglot, primary, address, name)
         self.poly = polyglot
@@ -21,6 +21,7 @@ class SwitchNode(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
 
+        self.apiBaseUrl = apiBaseUrl
         self.state = state
         self.status1 = status1
         self.address = address
@@ -34,8 +35,8 @@ class SwitchNode(udi_interface.Node):
 
     def start(self):
         ##### GET Devices ####
-        # self.allData = requests.get(
-        #    url='{}/api/devices'.format(self.apiBaseUrl))
+        self.allData = requests.get(
+            url='{}/api/devices'.format(self.apiBaseUrl))
         self.setDriver('ST', 1)
         self.setDriver('GV1', 1)
         # if self.state == 1:
