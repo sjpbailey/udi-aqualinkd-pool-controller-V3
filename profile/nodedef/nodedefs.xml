@@ -28,7 +28,7 @@
             <st id="GV0" editor="RUNIN" />
             <st id="GV1" editor="TEMP" />
             <st id="GV3" editor="TEMP" />
-            <st id="GV30" editor="STATUS" />
+
             <st id="GV4" editor="RUNIN" />
             <st id="GV5" editor="WATT" />
             <st id="GV6" editor="RPM" />
@@ -41,6 +41,7 @@
             <st id="GV12" editor="RUNIN" />
             <st id="GV13" editor="RUNIN" />
             <st id="GV14" editor="RUNIN" />
+            <st id="GV30" editor="STATUS" />
             <st id="GV15" editor="RUNIN" />
             <st id="GV16" editor="RUNIN" />
             <st id="GV17" editor="RUNIN" />
