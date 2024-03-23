@@ -24,28 +24,29 @@ class SwitchNode(udi_interface.Node):
         self.state = state
         self.status1 = status1
         self.address = address
-        LOGGER.info(self.address)
         self.name = name
-        LOGGER.info(name)
         id = address  # address.strip('zone_')
         id1 = id
-        LOGGER.info(id1)
         self.id1 = id1
+        LOGGER.info(id1)
+        LOGGER.info(self.address)
+        LOGGER.info(name)
 
     def start(self):
         ##### GET Devices ####
         # self.allData = requests.get(
         #    url='{}/api/devices'.format(self.apiBaseUrl))
+        self.setDriver('ST', 1)
+        self.setDriver('GV1', 1)
+        # if self.state == 1:
+        #    self.setDriver('ST', 1)
+        # else:
+        #    self.setDriver('ST', 0)
 
-        if self.state == 1:
-            self.setDriver('ST', 1)
-        else:
-            self.setDriver('ST', 0)
-
-        if self.status1 == 1:
+        '''if self.status1 == 1:
             self.setDriver('GV1', 1)
         else:
-            self.setDriver('GV1', 0)
+            self.setDriver('GV1', 0)'''
 
         # self.http = urllib3.PoolManager()
 
