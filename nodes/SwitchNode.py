@@ -48,7 +48,7 @@ class SwitchNode(udi_interface.Node):
         else:
             self.setDriver('GV1', 0)'''
 
-        # self.http = urllib3.PoolManager()
+        self.http = urllib3.PoolManager()
 
     def poll(self, polltype):
         if 'longPoll' in polltype:
