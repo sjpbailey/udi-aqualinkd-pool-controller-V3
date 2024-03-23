@@ -12,3 +12,4 @@ from .Pump1SPDNode import Pump1SPDNode
 from .PumpTriStarNode import PumpTriStarNode
 from .PumpHSVSNode import PumpHSVSNode
 from .PoolController import PoolController
+from .TemplateNode import TemplateNode
