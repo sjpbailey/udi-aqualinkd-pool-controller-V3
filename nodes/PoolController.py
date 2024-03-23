@@ -90,7 +90,7 @@ class PoolController(udi_interface.Node):
             self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
                                        allData, self.apiBaseUrl, self.api_url))
             LOGGER.info("Statuses Installed")
-            self.go()
+            # self.go()
 
     def go(self):
         ##### GET Devices ####
