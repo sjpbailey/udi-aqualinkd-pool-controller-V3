@@ -65,16 +65,32 @@ class SwitchNode(udi_interface.Node):
         '''if self.status1 == 1:
             self.setDriver('GV1', 1)
         else:
-            self.setDriver('GV1', 0)'''
+            self.setDriver('GV1', 0)
 
-        self.http = urllib3.PoolManager()
+        self.http = urllib3.PoolManager()'''
 
-    def poll(self, polltype):
+    '''def poll(self, polltype):
         if 'longPoll' in polltype:
             LOGGER.debug('longPoll (node)')
         else:
             LOGGER.debug('shortPoll (node)')
-            self.reportDrivers()
+            self.reportDrivers()'''
+
+    def poll(self, polltype):
+        """
+        This method is called at the poll intervals per the POLL event
+        subscription during init.
+        """
+
+        if 'longPoll' in polltype:
+            LOGGER.debug('longPoll (node)')
+        else:
+            LOGGER.debug('shortPoll (node)')
+            if int(self.getDriver('ST')) == 1:
+                self.setDriver('ST', 0)
+            else:
+                self.setDriver('ST', 1)
+            LOGGER.debug('%s: get ST=%s', self.lpfx, self.getDriver('ST'))
 
     def cmd_on(self, command):
         json_data = {
