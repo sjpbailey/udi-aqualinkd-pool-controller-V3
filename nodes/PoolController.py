@@ -86,8 +86,8 @@ class PoolController(udi_interface.Node):
             self.allDataJson = allData.json()
             # LOGGER.info(self.allDataJson)
 
-            # self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
-            #                           allData, self.apiBaseUrl, self.api_url))
+            self.poly.addNode(PoolNode(self.poly, self.address, 'pooladdr', 'Status',
+                                       allData, self.apiBaseUrl, self.api_url))
             LOGGER.info("Statuses Installed")
             self.go()
 
@@ -117,7 +117,8 @@ class PoolController(udi_interface.Node):
                     #    self.poly, self.address, address, name))  # state, status1, self.apiBaseUrl, self.api_url))
 
                     self.poly.addNode(SwitchNode(
-                        self.poly, self.address, address, name, state, status1, self.apiBaseUrl, self.api_url))
+                        self.poly, self.address, address, name, self.apiBaseUrl, self.api_url))
+                    #  state, status1,
                     # LOGGER.info('Found {} Circuits'.format(len(self.circuits)))
                     LOGGER.info("Auxillary Installation Complete")
 
