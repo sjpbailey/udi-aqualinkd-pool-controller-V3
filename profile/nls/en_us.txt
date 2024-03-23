@@ -17,7 +17,7 @@ ND-poolnode-ICON = Irrigation
 ST-bodypool-GV0-NAME = Pool Running
 ST-bodypool-GV1-NAME = Air Temperature
 ST-bodypool-GV3-NAME = Pool Temp
-ST-bodypool-GV30-NAME = -
+
 ST-bodypool-GV4-NAME = Pump Status
 ST-bodypool-GV5-NAME = Pump Watts
 ST-bodypool-GV6-NAME = Pump RPM
@@ -30,6 +30,7 @@ ST-bodypool-GV11-NAME = Setpoint SPA
 ST-bodypool-GV12-NAME = Solar Heat
 ST-bodypool-GV13-NAME = SPA Heat
 ST-bodypool-GV14-NAME = SPA Mode
+ST-bodypool-GV30-NAME = -
 ST-bodypool-GV15-NAME = AUX-1 Status
 ST-bodypool-GV16-NAME = AUX-2 Status
 ST-bodypool-GV17-NAME = AUX-3 Status
